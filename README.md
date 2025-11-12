@@ -8,7 +8,7 @@ This test is to compare the style and the performance of Entity Framework with C
 2. Specify your postgres connection string in the appsettings.json file
 2. Setup the database using ef (dotnet ef database update - in case of problems:refer to official documentation)
 3. Enter in the directory efexample.Tests
-4. Run the massiv insert tests (dotnet test -c Release -f net7.0 -t BulkInsertStudents_PerformanceTest)
+4. Run the massiv insert tests (dotnet test)
 You will see the results like the following:
 ```
 Inserted 5000 students in 354ms (14124,29 students/second)
