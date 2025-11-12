@@ -1,0 +1,63 @@
+# Ignore NuGet packages
+**/bin/**/*.nupkg
+**/obj/**/*.nupkg
+**/*.nuget.props
+**/*.nuget.targets
+**/project.lock.json
+
+# Ignore Visual Studio files
+**/.history/*
+**/*.suo
+**/*.user
+**/*.userprefs
+**/.vs
+**/.vscode
+**/AppData
+**/Local
+**/Rider2023.1
+**/RemoteFiles
+**/sftp-config
+**/venv
+**/venv3
+**/__pycache__
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.swp
+**/*.swo
+**/*.swn
+**/*.DS_Store
+**/.DS_Store
+**/._*
+**/Thumbs.db
+**/ehthumbs.db
+**/Desktop.ini
+.idea/
+.vscode/
+.classpath
+.project
+.settings
+.c9/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore other generated files
+**/Debug/**
+**/Release/**
+**/Build/**
+**/bin/**
+**/obj/**
+
+# Ignore node modules
+node_modules/
+
+# Ignore SQLite files
+*.db
+*.db-shm
+*.db-wal
