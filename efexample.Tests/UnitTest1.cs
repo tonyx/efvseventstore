@@ -14,7 +14,13 @@ public class StudentTests : IClassFixture<TestFixture>
         _fixture.ResetDatabase(); // Reset database before each test
     }
 
-    [Fact(Skip = "Ignored")]
+    [CollectionDefinition("Sequential")]
+    public class SequentialCollectionFixture : ICollectionFixture<TestFixture>
+    {
+        // This class has no code, and is never created. Its purpose is simply to be the place to apply [CollectionDefinition] and all the ICollectionFixture<> interfaces.
+    }
+
+    [Fact]
     public async Task AddStudent_ShouldSaveAndRetrieveStudent()
     {
         // Arrange
@@ -38,7 +44,7 @@ public class StudentTests : IClassFixture<TestFixture>
         Assert.NotEqual(Guid.Empty, savedStudent.Id);
     }
 
-    [Fact(Skip = "Ignored")]
+    [Fact]
     public async Task AddStudent_WithCourses_ShouldSaveStudentWithCourses()
     {
         // Arrange

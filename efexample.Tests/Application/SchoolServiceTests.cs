@@ -22,7 +22,7 @@ namespace efexample.Tests.Application
             fixture.ResetDatabase();
         }
 
-        [Fact(Skip = "Skipping test")]
+        [Fact]
         public async Task EnrollStudentInCourse_WhenWithinLimits_ShouldSucceed()
         {
             // Arrange
@@ -45,7 +45,7 @@ namespace efexample.Tests.Application
             Assert.Equal(course.Id, updatedStudent.EnrolledCourses.First().Id);
         }
 
-        [Fact(Skip = "Skipping test")]
+        [Fact]
         public async Task EnrollStudentInCourse_WhenExceedsStudentLimit_ShouldThrow()
         {
             // Arrange
@@ -64,7 +64,7 @@ namespace efexample.Tests.Application
                 () => _schoolService.EnrollStudentInCourseAsync(student.Id, course2.Id));
         }
 
-        [Fact(Skip = "Skipping test")]
+        [Fact]
         public async Task EnrollStudentInCourse_WhenExceedsCourseLimit_ShouldThrow()
         {
             // Arrange
