@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Oy0aI3ms/Z4=",
+  "dgSpecHash": "ELa2or8E7N0=",
   "success": true,
   "projectFilePath": "/Users/antoniolucca/github/efvseventstore/efexample.Tests/efexample.Tests.csproj",
   "expectedPackageFiles": [
@@ -97,7 +97,9 @@
     "/Users/antoniolucca/.nuget/packages/xunit.core/2.9.2/xunit.core.2.9.2.nupkg.sha512",
     "/Users/antoniolucca/.nuget/packages/xunit.extensibility.core/2.9.2/xunit.extensibility.core.2.9.2.nupkg.sha512",
     "/Users/antoniolucca/.nuget/packages/xunit.extensibility.execution/2.9.2/xunit.extensibility.execution.2.9.2.nupkg.sha512",
-    "/Users/antoniolucca/.nuget/packages/xunit.runner.visualstudio/2.8.2/xunit.runner.visualstudio.2.8.2.nupkg.sha512"
+    "/Users/antoniolucca/.nuget/packages/xunit.runner.visualstudio/2.8.2/xunit.runner.visualstudio.2.8.2.nupkg.sha512",
+    "/Users/antoniolucca/.nuget/packages/microsoft.netcore.app.ref/9.0.11/microsoft.netcore.app.ref.9.0.11.nupkg.sha512",
+    "/Users/antoniolucca/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.11/microsoft.aspnetcore.app.ref.9.0.11.nupkg.sha512"
   ],
   "logs": []
 }

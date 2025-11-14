@@ -38,35 +38,43 @@ namespace efexample.Application.Services
 
         public async Task EnrollStudentInCourseAsync(Guid studentId, Guid courseId)
         {
-            var student = await _context.Students
-                .Include(s => s.EnrolledCourses)
-                .FirstOrDefaultAsync(s => s.Id == studentId);
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+            try
+            {
+                var student = await _context.Students
+                    .Include(s => s.EnrolledCourses)
+                    .FirstOrDefaultAsync(s => s.Id == studentId);
 
-            if (student == null)
-                throw new InvalidOperationException("Student not found");
+                if (student == null)
+                    throw new InvalidOperationException("Student not found");
 
-            var course = await _context.Courses
-                .Include(c => c.EnrolledStudents)
-                .FirstOrDefaultAsync(c => c.Id == courseId);
+                var course = await _context.Courses
+                    .Include(c => c.EnrolledStudents)
+                    .FirstOrDefaultAsync(c => c.Id == courseId);
 
-            if (course == null)
-                throw new InvalidOperationException("Course not found");
+                if (course == null)
+                    throw new InvalidOperationException("Course not found");
 
-            // Check if student is already enrolled in this course
-            if (student.EnrolledCourses.Any(c => c.Id == courseId))
-                throw new InvalidOperationException("Student is already enrolled in this course");
+                if (student.EnrolledCourses.Any(c => c.Id == courseId))
+                    return;
+                
+                if (course.EnrolledStudents.Count >= course.MaxStudents)
+                    throw new InvalidOperationException("Course is full");
 
-            // Check student's course limit
-            if (student.EnrolledCourses.Count >= student.MaxCoursesAllowed)
-                throw new InvalidOperationException("Student has reached the maximum number of allowed courses");
+                if (student.EnrolledCourses.Count >= student.MaxCoursesAllowed)
+                    throw new InvalidOperationException("Student has reached the maximum number of courses");
 
-            // Check course capacity
-            if (course.EnrolledStudents.Count >= course.MaxStudents)
-                throw new InvalidOperationException("Course has reached maximum capacity");
+                student.EnrolledCourses.Add(course);
+                course.EnrolledStudents.Add(student);
 
-            // Enroll student in course
-            student.EnrolledCourses.Add(course);
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+            }
+            catch
+            {
+                await transaction.RollbackAsync();
+                throw;
+            }
         }
 
         public async Task<IEnumerable<Student>> GetAllStudentsAsync()
